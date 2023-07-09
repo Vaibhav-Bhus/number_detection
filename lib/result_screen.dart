@@ -11,18 +11,13 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
-  static final validCharacters = RegExp(r'^[a-zA-Z+-*/=&^%$#@!]+$');
+  static final validCharacters = RegExp(r'^[a-zA-Z]+$');
 
   saveNumber(BuildContext context) async {
     await FirebaseFirestore.instance
         .collection('Numbers')
         .doc(DateTime.now().toString())
-        .set({
-      // 'name': nameController.text.isNotEmpty
-      //     ? nameController.text
-      //     : DateTime.now().toString(),
-      'number': widget.text
-    });
+        .set({'number': widget.text});
     Navigator.of(context).pop();
   }
 
@@ -38,15 +33,19 @@ class _ResultScreenState extends State<ResultScreen> {
         .replaceAll('q', '9')
         .replaceAll('g', '9');
     print(validCharacters.hasMatch(widget.text));
+    b = !validCharacters.hasMatch(widget.text);
+    print(b);
     print(widget.text);
   }
+
+  bool b = true;
 
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         title: const Text('Result'),
         actions: [
-          validCharacters.hasMatch(widget.text) &&
+          b &&
                   widget.text.trim().length == 10 &&
                   (widget.text.startsWith('9') ||
                       widget.text.startsWith('8') ||
@@ -67,7 +66,7 @@ class _ResultScreenState extends State<ResultScreen> {
             alignment: Alignment.center,
             child: Container(
               padding: const EdgeInsets.all(30.0),
-              child: validCharacters.hasMatch(widget.text) &&
+              child: b &&
                       widget.text.trim().length == 10 &&
                       (widget.text.startsWith('9') ||
                           widget.text.startsWith('8') ||
