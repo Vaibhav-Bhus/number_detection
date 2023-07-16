@@ -32,7 +32,6 @@ class _ResultScreenState extends State<ResultScreen> {
         .replaceAll('j', '9')
         .replaceAll('q', '9')
         .replaceAll('g', '9');
-    print(validCharacters.hasMatch(widget.text));
     b = !validCharacters.hasMatch(widget.text);
     print(b);
     print(widget.text);
