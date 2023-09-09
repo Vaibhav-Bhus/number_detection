@@ -3,7 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
-import 'package:number_detection/history.dart';
+
 import 'package:number_detection/result_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -103,17 +103,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
             Scaffold(
               appBar: AppBar(
                 title: const Text('Number Recognition'),
-                actions: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => History(),
-                          ),
-                        );
-                      },
-                      child: Text('History'))
-                ],
+
               ),
               // Set the background to transparent so you can see the camera preview
               backgroundColor: _isPermissionGranted ? Colors.transparent : null,
